@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poll Embed</title>
+    <title>BeOp Poll Embed</title>
 </head>
 <body>
-    <script type="text/javascript" charset="utf-8" src="https://secure.polldaddy.com/p/14287687.js"></script>
-    <noscript><a href="https://poll.fm/14287687">Untitled Poll</a></noscript>
+    <h2>Vote for Your Favorite Player!</h2>
+    <div class="embed-infographic">
+        <div class="BeOpWidget" data-content="66e9c0ef9d032809d61516d3" data-name="embed-66e9c0ef9d032809d61516d3"></div>
+        <script>
+            window.beOpAsyncInit = function() {
+                BeOpSDK.init({
+                    account: "611eab0943cb6f529cc0d57b" // The BeOp account ID
+                });
+                BeOpSDK.watch();
+            };
+        </script>
+        <script src="https://widget.beop.io/sdk.js" async></script>
+    </div>
 </body>
 </html>
