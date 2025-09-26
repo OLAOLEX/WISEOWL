@@ -101,4 +101,71 @@ const allDomains = [
 // Detect domain from query param
 const urlParams = new URLSearchParams(window.location.search);
 let currentDomain = urlParams.get('domain') || window.location.hostname;
-currentDomain = currentDomain.toLowerCase
+currentDomain = currentDomain.toLowerCase().replace(/^www\./,'');
+
+// Display domain
+document.getElementById('domain-bold').innerText = currentDomain;
+
+// Status badge
+const statusDiv = document.getElementById('domain-status');
+if(allDomains.includes(currentDomain)){
+    statusDiv.innerHTML = `<div class="status-badge"><i class="fas fa-check-circle"></i><span>Domain Available for Purchase</span></div>`;
+} else {
+    statusDiv.innerHTML = `<div class="status-badge" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #ef4444;"><i class="fas fa-times-circle"></i><span>Domain Not Available</span></div>`;
+}
+
+// Populate dropdown
+const domainSelect = document.getElementById('domain-select');
+allDomains.forEach(d => {
+    const option = document.createElement('option');
+    option.value = d;
+    option.textContent = d;
+    if(d === currentDomain) option.selected = true;
+    domainSelect.appendChild(option);
+});
+domainSelect.addEventListener('change', () => {
+    window.location.href = "?domain=" + domainSelect.value;
+});
+
+// Populate other domains
+const otherList = document.getElementById('other-domains-list');
+allDomains.forEach(d => {
+    if(d !== currentDomain){
+        const span = document.createElement('span');
+        span.textContent = d;
+        span.onclick = () => { window.location.href = "?domain=" + d; };
+        otherList.appendChild(span);
+    }
+});
+
+// Offer input & buttons
+const offerInput = document.getElementById('offer');
+const whatsappBtn = document.getElementById('whatsapp-btn');
+const telegramBtn = document.getElementById('telegram-btn');
+const currentOfferSpan = document.getElementById('current-offer');
+
+const whatsappNumber = '+2349048777608';
+const telegramUsername = 'Realonlinevotes';
+
+offerInput.addEventListener('input', () => {
+    const val = parseFloat(offerInput.value) || 0;
+    whatsappBtn.disabled = val < 200;
+    telegramBtn.disabled = val < 200;
+    currentOfferSpan.textContent = `Current Offer: $${val}`;
+    if(val >= 200 && val < 500) currentOfferSpan.style.color = '#f59e0b';
+    else if(val >= 500 && val < 1000) currentOfferSpan.style.color = '#10b981';
+    else if(val >= 1000) currentOfferSpan.style.color = '#8b5cf6';
+    else currentOfferSpan.style.color = '#94a3b8';
+});
+
+whatsappBtn.addEventListener('click', () => {
+    const msg = encodeURIComponent(`Hello, I'm interested in purchasing the domain ${domainSelect.value}. I'm offering $${offerInput.value}.`);
+    window.open(`https://wa.me/${whatsappNumber}?text=${msg}`, '_blank');
+});
+telegramBtn.addEventListener('click', () => {
+    const msg = encodeURIComponent(`Hello, I'm interested in purchasing the domain ${domainSelect.value}. I'm offering $${offerInput.value}.`);
+    window.open(`https://t.me/${telegramUsername}?text=${msg}`, '_blank');
+});
+</script>
+</body>
+</html>
