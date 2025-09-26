@@ -1,11 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Best of Central Kitsap Poll</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Domain Marketplace</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* --- Existing styles kept --- */
+* { box-sizing:border-box; margin:0; padding:0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; line-height:1.6; min-height: 100vh; padding: 20px; }
+a { text-decoration:none; color:inherit; }
+.container { max-width:850px; margin:30px auto; padding:20px; }
+.card { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(10px); padding:40px; border-radius:20px; box-shadow:0 15px 35px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden; }
+.card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981); }
+.hero { text-align:center; margin-bottom:40px; position: relative; }
+.hero h1 { font-size:2.8rem; background: linear-gradient(90deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom:15px; font-weight: 700; letter-spacing: -0.5px; }
+.hero p { font-size:1.2rem; color:#94a3b8; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+.advantages { display:flex; justify-content:space-between; margin:30px 0; flex-wrap:wrap; gap: 20px; }
+.adv { flex:1 1 30%; text-align:center; padding: 25px 15px; background: rgba(30, 41, 59, 0.5); border-radius: 12px; transition: transform 0.3s, background 0.3s; border: 1px solid rgba(255,255,255,0.05); min-width: 200px; }
+.adv:hover { transform: translateY(-5px); background: rgba(30, 41, 59, 0.8); }
+.adv span { display:block; font-size:2.5rem; margin-bottom:15px; color: #10b981; }
+.adv h3 { font-size: 1.2rem; margin-bottom: 10px; color: #e2e8f0; }
+.adv p { color: #94a3b8; font-size: 0.95rem; }
+label { display:block; margin-bottom:12px; font-weight:600; color: #e2e8f0; font-size: 1.1rem; }
+input[type="number"], select { width:100%; padding:15px 20px; font-size:1rem; border-radius:10px; border:1px solid rgba(255,255,255,0.1); margin-bottom:20px; background: rgba(15, 23, 42, 0.7); color: #e2e8f0; transition: all 0.3s; }
+input[type="number"]:focus, select:focus { outline:none; border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59, 130, 246, 0.2); }
+.btn { display:block; width:100%; padding:18px; font-size:1.1rem; font-weight:600; border:none; border-radius:10px; cursor:pointer; transition:0.3s; margin-bottom:15px; position: relative; overflow: hidden; }
+.btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s; }
+.btn:hover::before { left: 100%; }
+.btn-whatsapp { background:linear-gradient(135deg, #25D366, #128C7E); color:#fff; }
+.btn-whatsapp:hover { background:linear-gradient(135deg, #128C7E, #25D366); transform: translateY(-2px); box-shadow: 0 7px 14px rgba(37, 211, 102, 0.2); }
+.btn-telegram { background:linear-gradient(135deg, #0088cc, #005999); color:#fff; }
+.btn-telegram:hover { background:linear-gradient(135deg, #005999, #0088cc); transform: translateY(-2px); box-shadow: 0 7px 14px rgba(0, 136, 204, 0.2); }
+.btn:disabled { background:#475569; cursor:not-allowed; transform: none; box-shadow: none; }
+.btn:disabled:hover::before { left: -100%; }
+.other-domains { margin-top:40px; }
+.other-domains h2 { text-align:center; margin-bottom:25px; color: #e2e8f0; font-size: 1.8rem; font-weight: 600; }
+.other-domains-list { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; }
+.other-domains-list span { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color:#fff; padding:10px 18px; border-radius:8px; cursor:pointer; font-size:0.95rem; transition:0.3s; font-weight: 500; border: 1px solid rgba(255,255,255,0.1); }
+.other-domains-list span:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3); }
+.footer { text-align:center; margin-top:40px; font-size:0.95rem; color:#94a3b8; padding: 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+@media(max-width:768px){ .advantages { flex-direction:column; align-items:center; } .adv { flex:1 1 100%; width: 100%; } .hero h1 { font-size: 2.2rem; } .card { padding: 30px 20px; } }
+.domain-bold { font-weight:800; font-size:2.2rem; background: linear-gradient(90deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom:15px; text-align:center; letter-spacing: 1px; padding: 10px; border-radius: 10px; background-color: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255,255,255,0.05); }
+.domain-status { text-align:center; margin-bottom:25px; font-size:1.3rem; color:#10b981; font-weight:600; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.status-badge { background: rgba(16, 185, 129, 0.1); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3); }
+.form-group { margin-bottom: 25px; }
+.price-indicator { display: flex; justify-content: space-between; margin-top: -15px; margin-bottom: 15px; font-size: 0.9rem; color: #94a3b8; }
+</style>
 </head>
 <body>
-    <div data-ss-embed="promotion" data-opguid="dec1903e-6035-4f18-b551-ea717e76c710" data-routing="hash" data-script="t8jyp8"></div>
-    <script defer src="https://embed-1096584.secondstreetapp.com/Scripts/dist/embed.js"></script>
+
+<div class="container">
+    <div class="card">
+        <div class="hero">
+            <div id="domain-bold" class="domain-bold"></div>
+            <div id="domain-status" class="domain-status">
+                <div class="status-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Domain Available for Purchase</span>
+                </div>
+            </div>
+            <p>Acquire premium digital assets to elevate your brand. Make an offer or contact us directly for negotiation.</p>
+        </div>
+
+        <div class="advantages">
+            <div class="adv"><span><i class="fas fa-bolt"></i></span><h3>Instant Response</h3><p>Receive immediate confirmation and quick follow-up on all inquiries</p></div>
+            <div class="adv"><span><i class="fas fa-shield-alt"></i></span><h3>Secure Transaction</h3><p>Escrow-protected transfers ensuring safe and smooth domain acquisition</p></div>
+            <div class="adv"><span><i class="fas fa-handshake"></i></span><h3>Flexible Terms</h3><p>Custom payment plans and negotiation options available</p></div>
+        </div>
+
+        <div class="form-group">
+            <label for="domain-select"><i class="fas fa-globe"></i> Select Domain</label>
+            <select id="domain-select"></select>
+        </div>
+
+        <div class="form-group">
+            <label for="offer"><i class="fas fa-tag"></i> Your Offer (Minimum $200)</label>
+            <input type="number" id="offer" placeholder="Enter your offer in USD" min="200">
+            <div class="price-indicator">
+                <span>Minimum: $200</span>
+                <span id="current-offer">Current Offer: $0</span>
+            </div>
+        </div>
+
+        <button id="whatsapp-btn" class="btn btn-whatsapp" disabled><i class="fab fa-whatsapp"></i> Contact via WhatsApp</button>
+        <button id="telegram-btn" class="btn btn-telegram" disabled><i class="fab fa-telegram"></i> Contact via Telegram</button>
+
+        <div class="other-domains">
+            <h2><i class="fas fa-boxes"></i> Explore Other Premium Domains</h2>
+            <div class="other-domains-list" id="other-domains-list"></div>
+        </div>
+    </div>
+
+    <div class="footer">&copy; 2025 PremiumDomainMarketplace.com - All Rights Reserved</div>
+</div>
+
+<script>
+const allDomains = [
+  "9k1k.com","cabcor.com","chatgat.com","consharp.com","fixask.ai","fixask.com",
+  "goesry.com","grofurt.com","hapfly.com","idnia.com","nigenious.com","nigenius.ai",
+  "oblynt.com","paycus.com","safist.com","sharpadd.com","sharprified.com","sharptos.com",
+  "shypry.com","sitbay.com","southfm.com","toplox.com","zurft.com"
+];
+
+// Detect domain from query param
+const urlParams = new URLSearchParams(window.location.search);
+let currentDomain = urlParams.get('domain');
+if(!currentDomain) currentDomain = window.location.hostname;
+
+document.getElementById('domain-bold').innerText = currentDomain;
+
+// Status badge
+const statusDiv = document.getElementById('domain-status');
+if(allDomains.includes(currentDomain)){
+    statusDiv.innerHTML = `<div class="status-badge"><i class="fas fa-check-circle"></i><span>Domain Available for Purchase</span></div>`;
+} else {
+    statusDiv.innerHTML = `<div class="status-badge" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #ef4444;"><i class="fas fa-times-circle"></i><span>Domain Not Available</span></div>`;
+}
+
+// Populate dropdown
+const domainSelect = document.getElementById('domain-select');
+allDomains.forEach(d => {
+    const option = document.createElement('option');
+    option.value = d;
+    option.textContent = d;
+    if(d === currentDomain) option.selected = true;
+    domainSelect.appendChild(option);
+});
+domainSelect.addEventListener('change', () => {
+    window.location.href = "?domain=" + domainSelect.value;
+});
+
+// Populate other domains
+const otherList = document.getElementById('other-domains-list');
+allDomains.forEach(d => {
+    if(d !== currentDomain){
+        const span = document.createElement('span');
+        span.textContent = d;
+        span.onclick = () => { window.location.href = "?domain=" + d; };
+        otherList.appendChild(span);
+    }
+});
+
+// Offer input & buttons
+const offerInput = document.getElementById('offer');
+const whatsappBtn = document.getElementById('whatsapp-btn');
+const telegramBtn = document.getElementById('telegram-btn');
+const currentOfferSpan = document.getElementById('current-offer');
+
+const whatsappNumber = 'YOURWHATSAPPNUMBER';
+const telegramUsername = 'YOURTELEGRAMUSERNAME';
+
+offerInput.addEventListener('input', () => {
+    const val = parseFloat(offerInput.value) || 0;
+    whatsappBtn.disabled = val < 200;
+    telegramBtn.disabled = val < 200;
+    currentOfferSpan.textContent = `Current Offer: $${val}`;
+    if(val >= 200 && val < 500) currentOfferSpan.style.color = '#f59e0b';
+    else if(val >= 500 && val < 1000) currentOfferSpan.style.color = '#10b981';
+    else if(val >= 1000) currentOfferSpan.style.color = '#8b5cf6';
+    else currentOfferSpan.style.color = '#94a3b8';
+});
+
+whatsappBtn.addEventListener('click', () => {
+    const msg = encodeURIComponent(`Hello, I'm interested in purchasing the domain ${domainSelect.value}. I'm offering $${offerInput.value}.`);
+    window.open(`https://wa.me/${whatsappNumber}?text=${msg}`, '_blank');
+});
+telegramBtn.addEventListener('click', () => {
+    const msg = encodeURIComponent(`Hello, I'm interested in purchasing the domain ${domainSelect.value}. I'm offering $${offerInput.value}.`);
+    window.open(`https://t.me/${telegramUsername}?text=${msg}`, '_blank');
+});
+</script>
 </body>
 </html>
