@@ -54,12 +54,7 @@ input[type="number"]:focus, select:focus { outline:none; border-color:#3b82f6; b
     <div class="card">
         <div class="hero">
             <div id="domain-bold" class="domain-bold"></div>
-            <div id="domain-status" class="domain-status">
-                <div class="status-badge">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Domain Available for Purchase</span>
-                </div>
-            </div>
+            <div id="domain-status" class="domain-status"></div>
             <p>Acquire premium digital assets to elevate your brand. Make an offer or contact us directly for negotiation.</p>
         </div>
 
@@ -105,9 +100,12 @@ const allDomains = [
 
 // Detect domain from query param
 const urlParams = new URLSearchParams(window.location.search);
-let currentDomain = urlParams.get('domain');
-if(!currentDomain) currentDomain = window.location.hostname;
+let currentDomain = urlParams.get('domain') || window.location.hostname;
 
+// Normalize: lowercase and remove 'www.'
+currentDomain = currentDomain.toLowerCase().replace(/^www\./,'');
+
+// Display domain
 document.getElementById('domain-bold').innerText = currentDomain;
 
 // Status badge
