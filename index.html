@@ -27,8 +27,8 @@ input[type="number"]:focus, select:focus { outline:none; border-color:#3b82f6; b
 .btn { display:block; width:100%; padding:18px; font-size:1.1rem; font-weight:600; border:none; border-radius:10px; cursor:pointer; transition:0.3s; margin-bottom:15px; position: relative; overflow: hidden; }
 .btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s; }
 .btn:hover::before { left: 100%; }
-.btn-whatsapp { background:linear-gradient(135deg, #25D366, #128C7E); color:#fff; }
-.btn-whatsapp:hover { background:linear-gradient(135deg, #128C7E, #25D366); transform: translateY(-2px); box-shadow: 0 7px 14px rgba(37, 211, 102, 0.2); }
+.btn-sapp { background:linear-gradient(135deg, #25D366, #128C7E); color:#fff; }
+.btn-sapp:hover { background:linear-gradient(135deg, #128C7E, #25D366); transform: translateY(-2px); box-shadow: 0 7px 14px rgba(37, 211, 102, 0.2); }
 .btn-telegram { background:linear-gradient(135deg, #0088cc, #005999); color:#fff; }
 .btn-telegram:hover { background:linear-gradient(135deg, #005999, #0088cc); transform: translateY(-2px); box-shadow: 0 7px 14px rgba(0, 136, 204, 0.2); }
 .btn:disabled { background:#475569; cursor:not-allowed; transform: none; box-shadow: none; }
@@ -77,7 +77,7 @@ input[type="number"]:focus, select:focus { outline:none; border-color:#3b82f6; b
             </div>
         </div>
 
-        <button id="whatsapp-btn" class="btn btn-whatsapp" disabled><i class="fab fa-whatsapp"></i> Contact via WhatsApp</button>
+        <button id="sapp-btn" class="btn btn-whatsapp" disabled><i class="fab fa-whatsapp"></i> Contact via WhatsApp</button>
         <button id="telegram-btn" class="btn btn-telegram" disabled><i class="fab fa-telegram"></i> Contact via Telegram</button>
 
         <div class="other-domains">
@@ -145,8 +145,8 @@ const whatsappBtn = document.getElementById('whatsapp-btn');
 const telegramBtn = document.getElementById('telegram-btn');
 const currentOfferSpan = document.getElementById('current-offer');
 
-const whatsappNumber = 'YOURWHATSAPPNUMBER';
-const telegramUsername = 'YOURTELEGRAMUSERNAME';
+const whatsappNumber = '+2349048777608';
+const telegramUsername = 'Realonlinevotes';
 
 offerInput.addEventListener('input', () => {
     const val = parseFloat(offerInput.value) || 0;
